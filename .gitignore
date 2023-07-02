@@ -1,3 +1,4 @@
 data.xlsx
 data.ods
 .hidden/
+__pycache__/
