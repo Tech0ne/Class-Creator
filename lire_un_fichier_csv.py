@@ -1,7 +1,7 @@
 """
-lire et ouvrir un fichier .csv
+03.07.23
+Lire et ouvrir un fichier .csv
 """
-
 import csv
 
 def lecture_fichier(fichier, nbr_entete, sep, encod):
