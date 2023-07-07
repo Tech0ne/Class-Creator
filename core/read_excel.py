@@ -1,11 +1,23 @@
 from .log import *
-import openpyxl
+import pandas as pd
 
-def read_excel_file(path):
-    try:
-        excel_obj = openpyxl.load_workbook(path)
-    except Exception as e:
-        fatal("An error occured :", str(e))
-    sheet_obj = excel_obj.active
-    cell_obj = sheet_obj.cell(row=9, column=4)
-    print(cell_obj.value)
+import os
+
+def from_list_to_excel(classes: list):
+    # classes : [
+    #   [
+    #       student_a: Student,
+    #       student_b: Student,
+    #       student_c: Student,
+    #   ],
+    #   [
+    #       student_d: Student,
+    #       student_e: Student,
+    #       student_f: Student,
+    #   ]
+    # ]
+    classes = [
+        [student.full_name for student in classe] for classe in classes
+    ]
+    excel = pd.DataFrame(classes, columns=[f"Seconde {x + 1}" for x in range(len(classes))])
+    excel.to_excel("classes.xlsx", sheet_name="Seconds", index=False)

@@ -30,7 +30,7 @@ class Student(object):
     def __init__(self, name, first_name, sex, origin, results, attendance, care, pap, pai, pps, lv2, option_1, option_2, want_with: list, without: list, remarks):
         self.name =         name
         self.first_name =   first_name
-        self.full_name =    f"{name};{first_name}"
+        self.full_name =    f"{name}.{first_name}"
         self.sex =          to_sex(str(sex))
         self.origin =       origin
         self.results =      to_int(str(results))

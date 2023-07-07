@@ -4,7 +4,7 @@ Lire et ouvrir un fichier .csv
 """
 import csv
 
-def lecture_fichier(fichier, nbr_entete, sep, encod):
+def lecture_fichier(fichier, nbr_entete, sep, encod="UTF-8-SIG"):
     """
     fichier : nom du fichier qu'on veut ouvrir
     nbr_entete :  nombre de ligne d'en-tête, qu'on met dans une liste à part

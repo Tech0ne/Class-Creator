@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Class creator</title>
+        <meta charset="utf-8">
+        <style>
+            body {
+                text-align: center;
+                background-color: #738290;
+                color: #FFFCF7;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Class creator</h1>
+        <br>
+        <p>
+            Class Creator est un outil de creation de classes qui prend en compte toutes les specificités de vos élèves.<br>
+            Il permet notement de customiser la disposition des classes en fonction de quel options / langues vivantes vous voullez.
+        </p>
+        <br>
+        <p>Pour commencer, veuillez remplire le formulaire suivant :</p><br><br><br>
+        <form action="/process" method="post">
+            <p>Veuillez entrer la liste des élèves :</p><input name="class" type="file" accept=".pkl,.json"><br>
+            <br><br><br><br>
+            <p>Veuillez entrer la liste des dispositions des classes</p><input name="dispo" type="file" accept=".pkl,.json"><br><br><br><br>
+            <input type="submit" value="Envoyer">
+        </form>
+    </body>
+</html>

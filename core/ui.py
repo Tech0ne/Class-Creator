@@ -1,5 +1,8 @@
-from flask import Flask, request
+from .algorithm import *
+
+from flask import Flask, request, abort, send_file
 from os.path import isfile
+from os import remove
 
 from .log import *
 
@@ -21,25 +24,20 @@ def internal_error(error):
 def webhome():
     return readfile("static/html/main.html")
 
-@webapp.route("/static/css/<path:name>")
-def get_some_css(name):
-    path = "static/css/" + name.replace("..", '')
-    return readfile(path)
-
-@webapp.route("/static/html/<path:name>")
-def get_some_css(name):
-    path = "static/html/" + name.replace("..", '')
-    return readfile(path)
-
-@webapp.route("/static/js/<path:name>")
-def get_some_css(name):
-    path = "static/js/" + name.replace("..", '')
-    return readfile(path)
-
-
-@webapp.route("/stopme")
-def tryandstop():
-    raise RuntimeError("SERVER_SHUTDOWN")
+@webapp.route("/process", methods=["POST"])
+def process_input_file():
+    if isfile("classes.xlsx"):
+        remove("classes.xlsx")
+    if not "class" in request.files or not "dispo" in request.files:
+        abort(500, description="No input file !")
+    classes = request.files["class"]
+    dispose = request.files["dispo"]
+    if classes.filename == '' or dispose.filename == '':
+        abort(500, description="No input file !")
+    ccontent = classes.stream.read()
+    dcontent = dispose.stream.read()
+    sort_students(process_content(ccontent), process_content(dispose))
+    send_file("classes.xlsx", attachment_filename="classes.xlsx")
 
 @webapp.teardown_request
 def teardown(_):
